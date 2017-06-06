@@ -1,0 +1,58 @@
+{% extends "creator/base.html" %}
+{% block bodyBlock %}
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>{{ user.first_name }} {{ user.last_name }}'s Forms</h3>
+        </div>
+        {% if forms %}
+            {% for mform in forms %}
+                <div class="col-sm-4 col-lg-2">
+                    <div class="thumbnail">
+                        <a href="#">
+                            <img src="https://www.jahia.com/files/live/sites/jahiacom/files/platform/Form%20Factory/Images/Form-Factory-Icon-03.png"
+                                class="img-responsive">
+                        </a>
+                        <div class="caption">
+                            <h2>{{ mform }}</h2>
+
+                            <!--View Form to Edit and/or Deploy-->
+                            <a href="#" class="btn btn-primary btn-sm" role="button">View Form</a>
+
+                            <!--Delete Form-->
+                            <form action="{% url 'creator:delete_form' mform.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="form_id" value="{{ mform.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+
+                            <!--Button to Send form-->
+                            <a href="#" class="btn btn-default btn-sm" role="button">
+                                <span class=
+                                              "glyphicon glyphicon-share
+                                               {% if not mform.deployed %}
+                                               active
+                                               {% endif %}"
+                                ></span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+        {% else %}
+            <div class="col-sm-12">
+                <br>
+                <a href="{% url 'creator:create_form' %}">
+                    <button type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add a Form
+                    </button>
+                </a>
+            </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock bodyBlock %}
