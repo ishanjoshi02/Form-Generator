@@ -7,7 +7,7 @@ from .forms import FormForm, UserForm, TextFieldForm
 from .models import Form, TextField
 
 
-def create_field(request, form_id):
+def create_text_field(request, form_id):
     user = request.user
     if not user.is_authenticated():
         return render(request, 'creator/login.html')
@@ -33,7 +33,7 @@ def create_field(request, form_id):
             'form':
                 form
         }
-        return render(request, 'creator/create_field.html', context=context)
+        return render(request, 'creator/create_text_field.html', context=context)
 
 
 def create_form(request):
