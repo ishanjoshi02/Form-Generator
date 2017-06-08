@@ -1,13 +1,13 @@
 .navbar {
     border-radius: 0;
-    background-color: #2196F3;
+
 }
 .navbar .navbar-brand {
-  color: #000000;
+  color: #FFFFFF;
 }
-.glyphicon-plus {
-  color: #000000;
-}
-.glyphicon-off {
-  color: #000000;
+.center-container {
+  margin: auto;
+  width: 50%;
+  border: 0px #FFFFFF;
+  padding: 10px;
 }

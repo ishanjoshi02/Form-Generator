@@ -1,3 +1,5 @@
+import pyrebase
+
 config = {
     apiKey: "AIzaSyC0BAl7F8ZdZx0afmnLgrbZeLDelm7sb0k",
     authDomain: "forms-92fbf.firebaseapp.com",
@@ -6,3 +8,7 @@ config = {
     storageBucket: "forms-92fbf.appspot.com",
     messagingSenderId: "892199408538"
 }
+
+
+def init_firebase_database():
+    return pyrebase.initialize_app(config).database()

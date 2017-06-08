@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Form
+from .models import Form, TextField
 
 
 class UserForm(forms.ModelForm):
@@ -12,11 +12,22 @@ class UserForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'username', 'email', 'password']
 
 
-class formForm(forms.ModelForm):
+class FormForm(forms.ModelForm):
     class Meta:
         model = Form
         fields = [
             'form_name',
             'header_text',
             'body_text'
+        ]
+
+
+class TextFieldForm(forms.ModelForm):
+    class Meta:
+        model = TextField
+        fields = [
+            'sr_no',
+            'caption',
+            'question',
+            'required',
         ]
