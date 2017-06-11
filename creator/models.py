@@ -8,6 +8,7 @@ class Form(models.Model):
     header_text = models.CharField(max_length=100)
     body_text = models.CharField(max_length=1000)
     deployed = models.BooleanField(default=False)
+    closed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.form_name
@@ -21,7 +22,7 @@ class TextField(models.Model):
     parent_form = models.ForeignKey(Form, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
-        self.caption
+        return self.caption
 
 
 class NumericField(models.Model):
@@ -36,3 +37,36 @@ class NumericField(models.Model):
 
     def __str__(self):
         return self.caption
+
+
+class DateField(models.Model):
+    sr_no = models.PositiveSmallIntegerField(default=0)
+    caption = models.CharField(max_length=100)
+    question = models.CharField(max_length=1000)
+    required = models.BooleanField(default=False)
+    parent_form = models.ForeignKey(Form, on_delete=models.CASCADE, default=1)
+    date_high = models.DateField()
+    date_low = models.DateField()
+
+    def __str__(self):
+        return self.caption
+
+
+class MemoField(models.Model):
+    sr_no = models.PositiveSmallIntegerField(default=0)
+    caption = models.CharField(max_length=100)
+    question = models.CharField(max_length=1000)
+    required = models.BooleanField(default=False)
+    parent_form = models.ForeignKey(Form, on_delete=models.CASCADE, default=1)
+
+    def __str__(self):
+        return self.caption
+
+
+class MCQField(models.Model):
+    sr_no = models.PositiveSmallIntegerField(default=0)
+    caption = models.CharField(max_length=100)
+    question = models.CharField(max_length=1000)
+    required = models.BooleanField(default=False)
+    parent_form = models.ForeignKey(Form, on_delete=models.CASCADE, default=1)
+    choices = models.CharField(max_length=10000)

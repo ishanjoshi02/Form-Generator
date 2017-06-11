@@ -1,74 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ form }}</title>
-    {% load staticfiles %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'creator/style.css' %}">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="{% static 'creator/scripts/dropdown.js' %}"></script>
-</head>
-<body>
-<!--todo Make a separate base file and store this navbar code-->
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'creator:index' %}">Forms</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="topNavBar">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="{% url 'creator:edit_form' form.id %}">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Edit Form
-                    </a>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                  </ul>
-                </li>
-                <li>
-                    <a href="{% url 'creator:logout_user' %}">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-    </div>
-</nav>
-
+{% extends "creator/base.html" %}
+{% block titleBlock %}{{ form }}{% endblock titleBlock %}
+{% block navbarItems %}
+<li class="nav-item">
+  <a href="{% url 'creator:edit_form' form.id %}">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Edit Form
+  </a>
+</li>
+<li class="nav-item">
+  <a href="{% url 'creator:logout_user' %}">
+    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
+  </a>
+</li>
+{% endblock navbarItems %}
+{% block bodyBlock %}
 <div class="center-container">
-
-
   <div class="col-sm-12">
-      <div class="panel panel-inverse" align="center">
-          <div class="panel-body" align="center">
-              <h2>Name : {{ form }}</h2>
-              <h2><small>Header Text : {{ form.header_text }}</small></h2>
-              <h4>Description : {{ form.body_text }}</h4>
-              {% for field in fields %}
-                <h4>{{ field.sr_no }}</h4><h2>{{ field.caption }}</h2>
-                <h3>{{ field.question }}</h3>
-                <h6>{{ field.required }}</h6>
-              {% endfor %}
-          </div>
+    <div class="panel panel-inverse" align="center">
+      <div class="panel-body" align="center">
+        <h2>Name : {{ form }}</h2>
+        <h2><small>Header : {{ form.header_text }}</small></h2>
+        <h4>Description : {{ form.body_text }}</h4>
+        {% for field in fields %}
+            <h3>Question : {{ field.question }}
+              <br>
+              <small>
+                <a href="#">
+                    <span class="glyphicon glyphicon-pencil"></span>&nbsp;
+                    Edit Question
+                </a>
+              </small>
+            </h3>
+        {% endfor %}
       </div>
+    </div>
+    <div class="center-container">
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ol>
+              <li>
+                <a href="{% url 'creator:create_text_field' form.id %}">Add Text Field</a>
+              </li>
+
+                <li>
+                  <a href="{% url 'creator:create_numeric_field' form.id %}">Add Numeric Field</a>
+                </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
 </div>
-
-
-</body>
-</html>
+{% endblock bodyBlock %}

@@ -1,71 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create New Form</title>
-    {% load staticfiles %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'creator/style.css' %}">
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</head>
-<body>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'creator:index' %}">Forms</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="topNavBar">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add Field
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'creator:logout_user' %}">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-    </div>
-</nav>
-
+{% extends "creator/base.html" %}
+{% block titleBlock %}
+{{ title }}
+{% endblock titleBlock %}
+{% block navbarItems %}
+<li class="nav-item">
+  <a href="{% url 'creator:logout_user' %}">
+    <span class="glyphicon glyphicon-off"></span>&nbsp;Logout
+  </a>
+</li>
+{% endblock navbarItems %}
+{% block bodyBlock %}
 <div class="container-fluid">
-
-    <div class="row">
-
-        <div class="col-sm-12 col-md-7">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h3>Add a New Form</h3>
-                    {% if error_message %}
-                    <p><strong>{{ error_message }}</strong></p>
-                    {% endif %}
-                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {% include 'creator/form_template.html' %}
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">Create</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-7">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3>{{ header_text }}</h3>
+          {% if error_message %}
+              <p>
+                <strong>{{ error_message }}</strong>
+              </p>
+          {% endif %}
+          <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% include "creator/form_template.html" %}
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">{{ button_text }}</button>
+              </div>
             </div>
+          </form>
         </div>
-
+      </div>
     </div>
-
+  </div>
 </div>
-
-</body>
-</html>
+{% endblock bodyBlock %}

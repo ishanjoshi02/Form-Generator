@@ -1,7 +1,20 @@
 {% extends "creator/base.html" %}
+{% block titleBlock %}Home{% endblock titleBlock %}
+{% block navbarItems %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'creator:create_form' %}">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add Form
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'creator:logout_user' %}">
+    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
+  </a>
+</li>
+{% endblock navbarItems %}
 {% block bodyBlock %}
 <div class="container-fluid">
-    
+
     <div class="row">
         <div class="col-sm-12">
             <h3>{{ user.first_name }} {{ user.last_name }}'s Forms</h3>
@@ -10,7 +23,7 @@
             {% for mform in forms %}
                 <div class="col-sm-4 col-lg-2">
                     <div class="thumbnail">
-                        <a href="#">
+                        <a href="{% url 'creator:detail' mform.id %}">
                             <img src="https://www.jahia.com/files/live/sites/jahiacom/files/platform/Form%20Factory/Images/Form-Factory-Icon-03.png"
                                 class="img-responsive">
                         </a>

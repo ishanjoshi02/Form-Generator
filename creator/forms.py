@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Form, TextField
+from .models import Form, TextField, NumericField
 
 
 class UserForm(forms.ModelForm):
@@ -13,6 +13,8 @@ class UserForm(forms.ModelForm):
 
 
 class FormForm(forms.ModelForm):
+    body_text = forms.CharField(widget=forms.Textarea)
+
     class Meta:
         model = Form
         fields = [
@@ -30,4 +32,18 @@ class TextFieldForm(forms.ModelForm):
             'caption',
             'question',
             'required',
+        ]
+
+
+class NumericFieldForm(forms.ModelForm):
+    class Meta:
+        model = NumericField
+        fields = [
+            'sr_no',
+            'caption',
+            'question',
+            'required',
+            'range_high',
+            'range_low',
+            'decimal_places',
         ]

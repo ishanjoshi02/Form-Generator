@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
-from .forms import FormForm, UserForm, TextFieldForm
+from .forms import FormForm, UserForm, TextFieldForm, NumericFieldForm
 from .models import Form, TextField
 
 
@@ -19,7 +19,8 @@ def create_text_field(request, form_id):
             field.parent_form = Form.objects.get(pk=form_id)
             field.save()
 
-            fields = TextField.objects.filter(parent_form=field.parent_form).order_by('sr_no')
+            fields = list(TextField.objects.filter(parent_form=field.parent_form).order_by('sr_no'))
+            fields.append(NumericFieldForm.objects.filter(parent_form=field.parent_form).order_by('sr_no'))
 
             return render(request, 'creator/detail.html', context={
                 'form':
@@ -31,9 +32,54 @@ def create_text_field(request, form_id):
             })
         context = {
             'form':
-                form
+                form,
+            'header_text':
+                'Add a Text Field',
+            'button_text':
+                'Add Text Field'
         }
-        return render(request, 'creator/create_text_field.html', context=context)
+        return render(request, 'creator/create_form.html', context=context)
+
+
+def create_numeric_field(request, form_id):
+    user = request.user
+    if not user.is_authenticated():
+        return render(request, 'creator/login.html')
+    else:
+        form = NumericFieldForm(request.POST or None)
+        if form.is_valid():
+            field = form.save(commit=False)
+            field.parent_form = Form.objects.get(pk=form_id)
+            field.save()
+
+            fields = list(TextField.objects.filter(parent_form=field.parent_form).order_by('sr_no'))
+            fields.append(NumericFieldForm.objects.filter(parent_form=field.parent_form).order_by('sr_no'))
+
+            context = {
+                'form':
+                    field.parent_form,
+                'user':
+                    user,
+                'fields':
+                    fields,
+            }
+
+            return render(request,
+                          'creator/detail.html',
+                          context
+                          )
+        return render(
+            request,
+            'creator/create_form.html',
+            {
+                'form':
+                    form,
+                'header_text':
+                    'Add a Numeric Field',
+                'button_text':
+                    'Add Numeric Field'
+            }
+        )
 
 
 def create_form(request):
@@ -47,10 +93,19 @@ def create_form(request):
             mform.user = request.user
             mform.save()
 
-            return render(request, 'creator/index.html')
+            all_forms = Form.objects.filter(user=request.user)
+
+            return render(request, 'creator/index.html', {
+                'forms':
+                    all_forms
+            })
         context = {
             'form':
-                form
+                form,
+            'header_text':
+                'Add new Form',
+            'button_text':
+                'Create Form'
         }
         return render(request, 'creator/create_form.html', context)
 
@@ -87,6 +142,7 @@ def edit_form(request, form_id):
     if not request.user.is_authenticated():
         return render(request, 'creator/login.html')
     else:
+        # todo change form of all fields to new field
         current_form = Form.objects.get(pk=form_id)
         form = FormForm(request.POST or None, instance=current_form)
         if form.is_valid():
@@ -105,11 +161,15 @@ def edit_form(request, form_id):
             return render(request, 'creator/detail.html', context)
         context = {
             'form':
-                form
+                form,
+            'header_text':
+                'Edit ' + current_form.form_name,
+            'button_text':
+                'Save Form'
         }
         return render(
             request,
-            'creator/edit_form.html',
+            'creator/create_form.html',
             context=context
         )
 

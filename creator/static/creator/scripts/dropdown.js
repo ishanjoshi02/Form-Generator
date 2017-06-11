@@ -1,1 +1,1 @@
-$().dropdown('toggle')
+$('.dropdown-toggle').dropdown()
