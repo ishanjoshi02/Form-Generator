@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31acea27-caa4-42bd-a863-94a4ff9db603" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/creator/templates/creator/create_text_field.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/creator/templates/creator/edit_form.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/forms.py" afterPath="$PROJECT_DIR$/creator/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/models.py" afterPath="$PROJECT_DIR$/creator/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/static/creator/scripts/dropdown.js" afterPath="$PROJECT_DIR$/creator/static/creator/scripts/dropdown.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/templates/creator/base.html" afterPath="$PROJECT_DIR$/creator/templates/creator/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/templates/creator/create_form.html" afterPath="$PROJECT_DIR$/creator/templates/creator/create_form.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/templates/creator/detail.html" afterPath="$PROJECT_DIR$/creator/templates/creator/detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/templates/creator/index.html" afterPath="$PROJECT_DIR$/creator/templates/creator/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/urls.py" afterPath="$PROJECT_DIR$/creator/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/views.py" afterPath="$PROJECT_DIR$/creator/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,14 +16,24 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/creator/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="150" column="31" lean-forward="true" selection-start-line="150" selection-start-column="31" selection-end-line="150" selection-end-column="31" />
+            <state relative-caret-position="362">
+              <caret line="152" column="31" lean-forward="true" selection-start-line="152" selection-start-column="31" selection-end-line="152" selection-end-column="31" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/creator/templates/creator/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1160">
+              <caret line="58" column="6" lean-forward="true" selection-start-line="58" selection-start-column="6" selection-end-line="58" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -61,24 +61,25 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/creator/templates/creator/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
+            <state relative-caret-position="-118">
               <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
               <folding>
-                <marker date="1497177304873" expanded="true" signature="1382:1441" ph="..." />
+                <marker date="1497190072017" expanded="true" signature="1598:1657" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="detail.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/creator/templates/creator/detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="26" column="26" lean-forward="false" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+            <state relative-caret-position="40">
+              <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
               <folding>
-                <element signature="e#258#264#0" expanded="true" />
-                <element signature="e#422#428#0" expanded="true" />
-                <element signature="e#1024#1030#0" expanded="true" />
+                <element signature="e#231#237#0" expanded="true" />
+                <element signature="e#509#515#0" expanded="true" />
+                <element signature="e#673#679#0" expanded="true" />
+                <element signature="e#1275#1281#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -139,7 +140,6 @@
         <option value="$PROJECT_DIR$/creator/templates/creator/form_template.html" />
         <option value="$PROJECT_DIR$/creator/templates/creator/register.html" />
         <option value="$PROJECT_DIR$/creator/templates/creator/login.html" />
-        <option value="$PROJECT_DIR$/creator/templates/creator/index.html" />
         <option value="$PROJECT_DIR$/creator/firebase.py" />
         <option value="$PROJECT_DIR$/creator/serializer.py" />
         <option value="$PROJECT_DIR$/creator/templates/creator/edit_form.html" />
@@ -152,9 +152,10 @@
         <option value="$PROJECT_DIR$/creator/templates/creator/create_field.html" />
         <option value="$PROJECT_DIR$/creator/templates/creator/base.html" />
         <option value="$PROJECT_DIR$/creator/templates/creator/create_form.html" />
-        <option value="$PROJECT_DIR$/creator/templates/creator/detail.html" />
         <option value="$PROJECT_DIR$/creator/urls.py" />
         <option value="$PROJECT_DIR$/creator/views.py" />
+        <option value="$PROJECT_DIR$/creator/templates/creator/index.html" />
+        <option value="$PROJECT_DIR$/creator/templates/creator/detail.html" />
       </list>
     </option>
   </component>
@@ -670,13 +671,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/creator/serializer.py" />
-    <entry file="file://$PROJECT_DIR$/creator/templates/creator/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-120">
-          <caret line="21" column="38" lean-forward="false" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/creator/templates/creator/edit_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="422">
@@ -747,16 +741,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/creator/templates/creator/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-          <folding>
-            <marker date="1497177304873" expanded="true" signature="1382:1441" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/creator/templates/creator/create_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -770,18 +754,6 @@
         <state relative-caret-position="200">
           <caret line="37" column="44" lean-forward="false" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/creator/templates/creator/detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="26" column="26" lean-forward="false" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
-          <folding>
-            <element signature="e#258#264#0" expanded="true" />
-            <element signature="e#422#428#0" expanded="true" />
-            <element signature="e#1024#1030#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -807,10 +779,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/creator/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="150" column="31" lean-forward="true" selection-start-line="150" selection-start-column="31" selection-end-line="150" selection-end-column="31" />
+        <state relative-caret-position="362">
+          <caret line="152" column="31" lean-forward="true" selection-start-line="152" selection-start-column="31" selection-end-line="152" selection-end-column="31" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/creator/templates/creator/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1160">
+          <caret line="58" column="6" lean-forward="true" selection-start-line="58" selection-start-column="6" selection-end-line="58" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/creator/templates/creator/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-118">
+          <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <folding>
+            <marker date="1497190072017" expanded="true" signature="1598:1657" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/creator/templates/creator/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+          <folding>
+            <element signature="e#231#237#0" expanded="true" />
+            <element signature="e#509#515#0" expanded="true" />
+            <element signature="e#673#679#0" expanded="true" />
+            <element signature="e#1275#1281#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,6 +1,18 @@
 {% extends "creator/base.html" %}
 {% block titleBlock %}{{ form }}{% endblock titleBlock %}
 {% block navbarItems %}
+<li class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    <span class="caret"></span>&nbsp;Add Field</a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{% url 'creator:create_text_field' form.id %}">Add Text Field</a>
+      </li>
+      <li>
+        <a href="{% url 'creator:create_numeric_field' form.id %}">Add Numeric Field</a>
+      </li>
+    </ul>
+</li>
 <li class="nav-item">
   <a href="{% url 'creator:edit_form' form.id %}">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Edit Form
@@ -17,8 +29,14 @@
   <div class="col-sm-12">
     <div class="panel panel-inverse" align="center">
       <div class="panel-body" align="center">
-        <h2>Name : {{ form }}</h2>
-        <h2><small>Header : {{ form.header_text }}</small></h2>
+        <h2>Name : {{ form }}
+          <br>
+          <small>
+            <strong>
+            Header : {{ form.header_text }}
+            </strong>
+          </small>
+        </h2>
         <h4>Description : {{ form.body_text }}</h4>
         {% for field in fields %}
             <h3>Question : {{ field.question }}
@@ -31,23 +49,6 @@
               </small>
             </h3>
         {% endfor %}
-      </div>
-    </div>
-    <div class="center-container">
-      <div class="col-sm-12">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <ol>
-              <li>
-                <a href="{% url 'creator:create_text_field' form.id %}">Add Text Field</a>
-              </li>
-
-                <li>
-                  <a href="{% url 'creator:create_numeric_field' form.id %}">Add Numeric Field</a>
-                </li>
-            </ol>
-          </div>
-        </div>
       </div>
     </div>
   </div>

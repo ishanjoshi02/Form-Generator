@@ -30,11 +30,7 @@
                         <div class="caption">
                             <h4>Name : {{ mform }}</h4>
                             <h4>Header : {{ mform.header_text }}</h4>
-
-                            <!--View Form to Edit and/or Deploy-->
                             <a href="{% url 'creator:detail' mform.id %}" class="btn btn-primary btn-sm" role="button">View Form</a>
-
-                            <!--Delete Form-->
                             <form action="{% url 'creator:delete_form' mform.id %}" method="post" style="display: inline;">
                                 {% csrf_token %}
                                 <input type="hidden" name="form_id" value="{{ mform.id }}" />
@@ -42,17 +38,9 @@
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             </form>
-
-                            <!--Button to Send form-->
                             <a href="#" class="btn btn-default btn-sm" role="button">
-                                <span class=
-                                              "glyphicon glyphicon-share
-                                               {% if not mform.deployed %}
-                                               active
-                                               {% endif %}"
-                                ></span>
+                                <span class="glyphicon glyphicon-share {% if not mform.deployed %}active{% endif %}"></span>
                             </a>
-
                         </div>
                     </div>
                 </div>
