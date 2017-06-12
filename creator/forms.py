@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Form, TextField, NumericField
+from .models import DateField, Form, TextField, NumericField
 
 
 class UserForm(forms.ModelForm):
@@ -46,4 +46,16 @@ class NumericFieldForm(forms.ModelForm):
             'range_high',
             'range_low',
             'decimal_places',
+        ]
+
+class DateFieldForm(forms.Form):
+    class Meta:
+        model = DateField
+        fields = [
+            'sr_no',
+            'caption',
+            'question',
+            'required',
+            'date_high',
+            'date_low'
         ]

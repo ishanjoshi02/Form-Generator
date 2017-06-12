@@ -3,9 +3,23 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
-from .forms import FormForm, UserForm, TextFieldForm, NumericFieldForm
-from .models import Form, TextField
+from .forms import DateFieldForm, FormForm, UserForm, TextFieldForm, NumericFieldForm
+from .models import DateField, Form, TextField, NumericField
 
+
+def create_date_field(request, form_id):
+    user = request.user
+    if not user.is_authenticated():
+        return render(request, 'creator/login.html')
+    else:
+        form = DateFieldForm(request.POST or None)
+
+        if form.is_valid():
+            field = form.save(commit=False)
+            field.parent_form = Form.objects.get(pk=form_id)
+            field.save()
+
+            fields = list(TextField.objects.filter(parent_form=field.parent_form))
 
 def create_text_field(request, form_id):
     user = request.user
@@ -19,8 +33,7 @@ def create_text_field(request, form_id):
             field.parent_form = Form.objects.get(pk=form_id)
             field.save()
 
-            fields = list(TextField.objects.filter(parent_form=field.parent_form).order_by('sr_no'))
-            fields.append(NumericFieldForm.objects.filter(parent_form=field.parent_form).order_by('sr_no'))
+            fields = TextField.objects.filter(parent_form=field.parent_form).order_by('sr_no')
 
             return render(request, 'creator/detail.html', context={
                 'form':
@@ -138,13 +151,30 @@ def delete_form(request, form_id):
     })
 
 
+def delete_text_field(request, form_id, field_id):
+    current = TextField.objects.get(pk=field_id)
+    current.delete()
+    user = request.user
+    current_form = get_object_or_404(Form, pk=form_id)
+    all_fields = list(TextField.objects.filter(parent_form=current_form).order_by('sr_no'))
+    context = {
+        'form':
+            current_form,
+        'user':
+            user,
+        'fields':
+            all_fields,
+    }
+    return render(request, 'creator/detail.html', context)
+
+
 def edit_form(request, form_id):
     if not request.user.is_authenticated():
         return render(request, 'creator/login.html')
     else:
         # todo change form of all fields to new field
-        current_form = Form.objects.get(pk=form_id)
-        form = FormForm(request.POST or None, instance=current_form)
+        previous_form = Form.objects.get(pk=form_id)
+        form = FormForm(request.POST or None, instance=previous_form)
         if form.is_valid():
             current_form = form.save(commit=False)
             current_form.user = request.user
@@ -152,20 +182,63 @@ def edit_form(request, form_id):
 
             user = request.user
             current_form = get_object_or_404(Form, pk=form_id)
+            all_fields = list(TextField.objects.filter(parent_form=current_form).order_by('sr_no'))
             context = {
                 'form':
                     current_form,
                 'user':
-                    user
+                    user,
+                'fields':
+                    all_fields,
             }
             return render(request, 'creator/detail.html', context)
         context = {
             'form':
                 form,
             'header_text':
-                'Edit ' + current_form.form_name,
+                'Edit ' + previous_form.form_name,
             'button_text':
                 'Save Form'
+        }
+        return render(
+            request,
+            'creator/create_form.html',
+            context=context
+        )
+
+
+def edit_text_field(request, field_id):
+    if not request.user.is_authenticated():
+        return render(request, 'creator/login.html')
+    else:
+        previous_field = TextField.objects.get(pk=field_id)
+        form = TextFieldForm(request.POST or None, instance=previous_field)
+        if form.is_valid():
+            current_field = form.save(commit=False)
+            current_field.parent_form = previous_field.parent_form
+            current_field.save()
+
+            context = {
+                'form':
+                    previous_field.parent_form,
+                'user':
+                    request.user
+            }
+
+            return render(
+                request,
+                'creator/detail.html',
+                context=context
+            )
+        context = {
+            'form':
+                form,
+            'title':
+                'Edit ' + previous_field.caption,
+            'header_text':
+                'Edit ' + previous_field.caption,
+            'button_text':
+                'Save'
         }
         return render(
             request,
@@ -203,7 +276,11 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return render(request, 'creator/index.html')
+                context = {
+                    'forms':
+                        Form.objects.filter(user=request.user)
+                }
+                return render(request, 'creator/index.html', context=context)
             else:
                 return render(request, 'creator/login.html', context={
                     'error_message':
@@ -232,6 +309,7 @@ def register_user(request):
         first_name = form.cleaned_data['first_name']
         last_name = form.cleaned_data['last_name']
         email = form.cleaned_data['email']
+
         user = User.objects.create_user(username=username, email=email, password=password)
         user.first_name = first_name
         user.last_name = last_name

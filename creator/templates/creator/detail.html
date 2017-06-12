@@ -39,16 +39,26 @@
         </h2>
         <h4>Description : {{ form.body_text }}</h4>
         {% for field in fields %}
-            <h3>Question : {{ field.question }}
-              <br>
+            <h3>
+              {% if field.required %}
+                <font color="black">{{ field.question }}</font>
+              {% else %}
+                <font color="cyan">{{ field.question }}</font>
+              {% endif %}
               <small>
-                <a href="#">
+                <a href="{% url 'creator:edit_text_field' field.id %}">
                     <span class="glyphicon glyphicon-pencil"></span>&nbsp;
-                    Edit Question
+                </a>
+                  <a href="{% url 'creator:delete_text_field' form.id field.id %}">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;
                 </a>
               </small>
             </h3>
         {% endfor %}
+        {% if fields %}
+            <h3><font color="red">Questions in Red Color are Necessary</font></h3>
+        {% endif %}
+
       </div>
     </div>
   </div>
