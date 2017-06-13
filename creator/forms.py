@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import DateField, Form, TextField, NumericField
+from .models import DateField, Form, TextField, NumericField, MemoField, MCQField
 
 
 class UserForm(forms.ModelForm):
@@ -48,7 +48,11 @@ class NumericFieldForm(forms.ModelForm):
             'decimal_places',
         ]
 
+
 class DateFieldForm(forms.Form):
+    date_high = forms.DateInput()
+    date_low = forms.DateInput()
+
     class Meta:
         model = DateField
         fields = [
@@ -58,4 +62,27 @@ class DateFieldForm(forms.Form):
             'required',
             'date_high',
             'date_low'
+        ]
+
+
+class MemoFieldForm(forms.ModelForm):
+    class Meta:
+        model = MemoField
+        fields = [
+            'sr_no',
+            'caption',
+            'question',
+            'required',
+        ]
+
+
+class MCQFieldForm(forms.ModelForm):
+    class Meta:
+        model = MCQField
+        fields = [
+            'sr_no',
+            'caption',
+            'question',
+            'required',
+            'choices'
         ]

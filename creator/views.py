@@ -1,10 +1,11 @@
+import operator
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
-from .forms import DateFieldForm, FormForm, UserForm, TextFieldForm, NumericFieldForm
-from .models import DateField, Form, TextField, NumericField
+from .forms import DateFieldForm, FormForm, UserForm, TextFieldForm, NumericFieldForm, MCQFieldForm
+from .models import DateField, Form, TextField, NumericField, MemoField, MCQField
 
 
 def create_date_field(request, form_id):
@@ -19,7 +20,27 @@ def create_date_field(request, form_id):
             field.parent_form = Form.objects.get(pk=form_id)
             field.save()
 
-            fields = list(TextField.objects.filter(parent_form=field.parent_form))
+            context = {
+                'form':
+                    field.parent_form,
+                'user':
+                    request.user,
+                'fields':
+                    get_all_fields(field.parent_form)
+            }
+
+            return render(request, 'creator/detail.html', context=context)
+
+        context = {
+            'form':
+                form,
+            'header_text':
+                'Add a Date Field',
+            'button_text':
+                'Add Date Field'
+        }
+        return render(request, 'creator/create_form.html', context=context)
+
 
 def create_text_field(request, form_id):
     user = request.user
@@ -54,6 +75,30 @@ def create_text_field(request, form_id):
         return render(request, 'creator/create_form.html', context=context)
 
 
+def create_mcq_field(request, form_id):
+    user = request.user
+    if not user.is_authenticated():
+        return render(request, 'creator/login.html')
+    else:
+        form = MCQFieldForm(request.POST or None)
+        if form.is_valid():
+            field = form.save(commit=False)
+            field.parent_form = Form.objects.get(pk=form_id)
+            field.save()
+
+            context = {
+                'form':
+                    field.parent_form,
+                'user':
+                    user,
+                'fields':
+                    get_all_fields(field.parent_form),
+            }
+
+            return render(request, 'creator/detail.html', context=context)
+        return render(request, 'creator/create_form.html', context={'form': form, 'header_text':'Add a MCQ Field', 'button_text' : 'Add Field'})
+
+
 def create_numeric_field(request, form_id):
     user = request.user
     if not user.is_authenticated():
@@ -65,16 +110,13 @@ def create_numeric_field(request, form_id):
             field.parent_form = Form.objects.get(pk=form_id)
             field.save()
 
-            fields = list(TextField.objects.filter(parent_form=field.parent_form).order_by('sr_no'))
-            fields.append(NumericFieldForm.objects.filter(parent_form=field.parent_form).order_by('sr_no'))
-
             context = {
                 'form':
                     field.parent_form,
                 'user':
                     user,
                 'fields':
-                    fields,
+                    get_all_fields(field.parent_form),
             }
 
             return render(request,
@@ -129,15 +171,23 @@ def detail(request, form_id):
     else:
         user = request.user
         current_form = get_object_or_404(Form, pk=form_id)
-        all_fields = list(TextField.objects.filter(parent_form=current_form).order_by('sr_no'))
-        context = {
-            'form':
-                current_form,
-            'user':
-                user,
-            'fields':
-                all_fields,
-        }
+        fields = get_all_fields(current_form)
+        if len(fields) == 0:
+            context = {
+                'form':
+                    current_form,
+                'user':
+                    user,
+                'fields':
+                    get_all_fields(current_form),
+            }
+        else:
+            context = {
+                'form':
+                    current_form,
+                'user':
+                    user,
+            }
         return render(request, 'creator/detail.html', context)
 
 
@@ -151,19 +201,32 @@ def delete_form(request, form_id):
     })
 
 
-def delete_text_field(request, form_id, field_id):
-    current = TextField.objects.get(pk=field_id)
+def delete_numeric_field(request, form_id, field_id):
+    current = NumericField.objects.get(pk=field_id)
     current.delete()
-    user = request.user
     current_form = get_object_or_404(Form, pk=form_id)
-    all_fields = list(TextField.objects.filter(parent_form=current_form).order_by('sr_no'))
     context = {
         'form':
             current_form,
         'user':
-            user,
+            request.user,
         'fields':
-            all_fields,
+            get_all_fields(current_form)
+    }
+    return render(request, 'creator/detail.html', context)
+
+
+def delete_text_field(request, form_id, field_id):
+    current = TextField.objects.get(pk=field_id)
+    current.delete()
+    current_form = get_object_or_404(Form, pk=form_id)
+    context = {
+        'form':
+            current_form,
+        'user':
+            request.user,
+        'fields':
+            get_all_fields(current_form),
     }
     return render(request, 'creator/detail.html', context)
 
@@ -245,6 +308,18 @@ def edit_text_field(request, field_id):
             'creator/create_form.html',
             context=context
         )
+
+
+def get_all_fields(form):
+    fields = list(TextField.objects.filter(parent_form=form))
+    numeric_fields = list(NumericField.objects.filter(parent_form=form))
+    if len(numeric_fields) > 1:
+        for field in numeric_fields:
+            fields.append(field)
+    else:
+        fields.append(numeric_fields)
+    # todo Write above code for all fields
+    return fields
 
 
 def index(request):

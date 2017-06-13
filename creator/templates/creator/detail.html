@@ -1,6 +1,7 @@
 {% extends "creator/base.html" %}
 {% block titleBlock %}{{ form }}{% endblock titleBlock %}
 {% block navbarItems %}
+{% if not fields %}
 <li class="dropdown">
   <a class="dropdown-toggle" data-toggle="dropdown" href="#">
     <span class="caret"></span>&nbsp;Add Field</a>
@@ -11,8 +12,18 @@
       <li>
         <a href="{% url 'creator:create_numeric_field' form.id %}">Add Numeric Field</a>
       </li>
+      <li>
+        <a href="{% url 'creator:add_mcq_field' form.id %}">Add a MCQ Field</a>
+      </li>
+      <li>
+        <a href="{% url 'creator:create_date_field' form.id %}">Add a Date Field</a>
+      </li>
+      <li>
+        <a href="#">Add a Memo Field</a>
+      </li>
     </ul>
 </li>
+{% endif %}
 <li class="nav-item">
   <a href="{% url 'creator:edit_form' form.id %}">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Edit Form
@@ -38,27 +49,53 @@
           </small>
         </h2>
         <h4>Description : {{ form.body_text }}</h4>
-        {% for field in fields %}
+        {% if fields %}
+          {% for field in fields %}
             <h3>
               {% if field.required %}
-                <font color="black">{{ field.question }}</font>
+                <strong>{{ field.question }}</strong>
               {% else %}
-                <font color="cyan">{{ field.question }}</font>
+                <small>{{ field.question }}</small>
               {% endif %}
               <small>
-                <a href="{% url 'creator:edit_text_field' field.id %}">
+                  {% if field.get_model_type == 'TextField' %}
+                    <a href="{% url 'creator:edit_text_field' field.id %}"/>
+                  {% elif field.get_model_type == 'NumericField' %}
+                    <a href="#"/>
+                  {% endif %}
                     <span class="glyphicon glyphicon-pencil"></span>&nbsp;
-                </a>
-                  <a href="{% url 'creator:delete_text_field' form.id field.id %}">
+                  {% if field.get_model_type == 'TextField' %}
+                    <a href="{% url 'creator:delete_text_field' form.id field.id %}"/>
+                  {% elif field.get_model_type == 'NumericField' %}
+                    <a href="{% url 'creator:delete_numeric_field' form.id field.id %}"/>
+                  {% endif %}
                     <span class="glyphicon glyphicon-trash"></span>&nbsp;
                 </a>
               </small>
             </h3>
         {% endfor %}
-        {% if fields %}
-            <h3><font color="red">Questions in Red Color are Necessary</font></h3>
+            <h5><strong>Questions in Bold are Necessary</strong></h5>
+        {% else %}
+          <div class="container-fluid">
+            <div class="col-sm-12" align="center">
+              <br>
+              <div class="dropdown" align="center">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  Add a Field
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-center">
+                  <li>
+                    <a href="#">Text Field</a>
+                  </li>
+                  <li>
+                    <a href="#">Numeric Field</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         {% endif %}
-
       </div>
     </div>
   </div>

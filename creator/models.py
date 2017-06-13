@@ -24,6 +24,9 @@ class TextField(models.Model):
     def __str__(self):
         return self.caption
 
+    def get_model_type(self):
+        return 'TextField'
+
 
 class NumericField(models.Model):
     sr_no = models.PositiveSmallIntegerField(default=0)
@@ -38,6 +41,9 @@ class NumericField(models.Model):
     def __str__(self):
         return self.caption
 
+    def get_model_type(self):
+        return 'NumericField'
+
 
 class DateField(models.Model):
     sr_no = models.PositiveSmallIntegerField(default=0)
@@ -51,6 +57,9 @@ class DateField(models.Model):
     def __str__(self):
         return self.caption
 
+    def get_model_type(self):
+        return 'DateField'
+
 
 class MemoField(models.Model):
     sr_no = models.PositiveSmallIntegerField(default=0)
@@ -62,6 +71,9 @@ class MemoField(models.Model):
     def __str__(self):
         return self.caption
 
+    def get_model_type(self):
+        return 'MemoField'
+
 
 class MCQField(models.Model):
     sr_no = models.PositiveSmallIntegerField(default=0)
@@ -70,3 +82,9 @@ class MCQField(models.Model):
     required = models.BooleanField(default=False)
     parent_form = models.ForeignKey(Form, on_delete=models.CASCADE, default=1)
     choices = models.CharField(max_length=10000)
+
+    def __str__(self):
+        return self.caption
+
+    def get_model_type(self):
+        return 'MCQField'
