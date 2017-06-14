@@ -49,7 +49,7 @@ class NumericFieldForm(forms.ModelForm):
         ]
 
 
-class DateFieldForm(forms.Form):
+class DateFieldForm(forms.ModelForm):
     date_high = forms.DateInput()
     date_low = forms.DateInput()
 

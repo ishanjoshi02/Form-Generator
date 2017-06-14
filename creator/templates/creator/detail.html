@@ -7,19 +7,19 @@
     <span class="caret"></span>&nbsp;Add Field</a>
     <ul class="dropdown-menu">
       <li>
-        <a href="{% url 'creator:create_text_field' form.id %}">Add Text Field</a>
+        <a href="{% url 'creator:create_date_field' form.id %}">Add a Date Field</a>
       </li>
       <li>
-        <a href="{% url 'creator:create_numeric_field' form.id %}">Add Numeric Field</a>
+        <a href="{% url 'creator:create_memo_field' form.id %}">Add a Memo Field</a>
       </li>
       <li>
         <a href="{% url 'creator:add_mcq_field' form.id %}">Add a MCQ Field</a>
       </li>
       <li>
-        <a href="{% url 'creator:create_date_field' form.id %}">Add a Date Field</a>
+        <a href="{% url 'creator:create_numeric_field' form.id %}">Add Numeric Field</a>
       </li>
       <li>
-        <a href="#">Add a Memo Field</a>
+        <a href="{% url 'creator:create_text_field' form.id %}">Add Text Field</a>
       </li>
     </ul>
 </li>
@@ -84,12 +84,21 @@
                   Add a Field
                   <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu dropdown-menu-center">
+                <ul class="dropdown-menu">
                   <li>
-                    <a href="#">Text Field</a>
+                    <a href="{% url 'creator:create_date_field' form.id %}">Add a Date Field</a>
                   </li>
                   <li>
-                    <a href="#">Numeric Field</a>
+                    <a href="{% url 'creator:create_memo_field' form.id %}">Add a Memo Field</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'creator:add_mcq_field' form.id %}">Add a MCQ Field</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'creator:create_numeric_field' form.id %}">Add Numeric Field</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'creator:create_text_field' form.id %}">Add Text Field</a>
                   </li>
                 </ul>
               </div>

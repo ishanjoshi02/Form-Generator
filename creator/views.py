@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
-from .forms import DateFieldForm, FormForm, UserForm, TextFieldForm, NumericFieldForm, MCQFieldForm
+from .forms import DateFieldForm, FormForm, UserForm, TextFieldForm, NumericFieldForm, MCQFieldForm, MemoFieldForm
 from .models import DateField, Form, TextField, NumericField, MemoField, MCQField
 
 
@@ -79,6 +79,7 @@ def create_mcq_field(request, form_id):
     user = request.user
     if not user.is_authenticated():
         return render(request, 'creator/login.html')
+    # todo change to custom template
     else:
         form = MCQFieldForm(request.POST or None)
         if form.is_valid():
@@ -98,6 +99,36 @@ def create_mcq_field(request, form_id):
             return render(request, 'creator/detail.html', context=context)
         return render(request, 'creator/create_form.html', context={'form': form, 'header_text':'Add a MCQ Field', 'button_text' : 'Add Field'})
 
+
+def create_memo_field(request, form_id):
+    user = request.user
+    if not user.is_authenticated():
+        return render(request, 'creator/login.html')
+    else:
+        form = MemoFieldForm(request.POST or None)
+        if form.is_valid():
+            field = form.save(commit=False)
+            field.parent_form = Form.objects.get(pk=form_id)
+            field.save()
+
+            context = {
+                'form':
+                    field.parent_form,
+                'user':
+                    user,
+                'fields':
+                    get_all_fields(field.parent_form),
+            }
+            return render(request, 'creator/detail.html', context=context)
+        context = {
+            'header_text':
+                'Add a Memo Field',
+            'button_text':
+                'Add Field',
+            'form':
+                form,
+        }
+        return render(request, 'creator/create_form.html', context=context)
 
 def create_numeric_field(request, form_id):
     user = request.user
