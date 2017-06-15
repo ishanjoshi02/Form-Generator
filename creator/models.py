@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+import json
+
 
 class Form(models.Model):
     user = models.ForeignKey(User, default=1)
@@ -12,6 +14,9 @@ class Form(models.Model):
 
     def __str__(self):
         return self.form_name
+
+    def toJson(self):
+        return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
 
 
 class TextField(models.Model):
