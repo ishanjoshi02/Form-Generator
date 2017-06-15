@@ -24,7 +24,8 @@ class TextField(models.Model):
     def __str__(self):
         return self.caption
 
-    def get_model_type(self):
+    @staticmethod
+    def get_model_type():
         return 'TextField'
 
 
@@ -41,7 +42,8 @@ class NumericField(models.Model):
     def __str__(self):
         return self.caption
 
-    def get_model_type(self):
+    @staticmethod
+    def get_model_type():
         return 'NumericField'
 
 
@@ -57,7 +59,8 @@ class DateField(models.Model):
     def __str__(self):
         return self.caption
 
-    def get_model_type(self):
+    @staticmethod
+    def get_model_type():
         return 'DateField'
 
 
@@ -71,7 +74,8 @@ class MemoField(models.Model):
     def __str__(self):
         return self.caption
 
-    def get_model_type(self):
+    @staticmethod
+    def get_model_type():
         return 'MemoField'
 
 
@@ -86,5 +90,6 @@ class MCQField(models.Model):
     def __str__(self):
         return self.caption
 
-    def get_model_type(self):
+    @staticmethod
+    def get_model_type():
         return 'MCQField'

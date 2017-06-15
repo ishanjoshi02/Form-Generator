@@ -1,7 +1,14 @@
 {% extends "creator/base.html" %}
 {% block titleBlock %}{{ form }}{% endblock titleBlock %}
+{% block scriptBlock %}
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script>
+$(document).ready(function() {
+  console.log("Hi");
+});
+</script>
+{% endblock scriptBlock %}
 {% block navbarItems %}
-{% if not fields %}
 <li class="dropdown">
   <a class="dropdown-toggle" data-toggle="dropdown" href="#">
     <span class="caret"></span>&nbsp;Add Field</a>
@@ -23,7 +30,6 @@
       </li>
     </ul>
 </li>
-{% endif %}
 <li class="nav-item">
   <a href="{% url 'creator:edit_form' form.id %}">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Edit Form
@@ -61,13 +67,25 @@
                   {% if field.get_model_type == 'TextField' %}
                     <a href="{% url 'creator:edit_text_field' field.id %}"/>
                   {% elif field.get_model_type == 'NumericField' %}
-                    <a href="#"/>
+                    <a href="{% url 'creator:edit_text_field' field.id %}"/>
+                  {% elif field.get_model_type == 'DateField' %}
+                    <a href="{% url 'creator:edit_text_field' field.id %}"/>
+                  {% elif field.get_model_type == 'MemoField' %}
+                    <a href="{% url 'creator:edit_text_field' field.id %}"/>
+                  {% elif field.get_model_type == 'MCQField' %}
+                    <a href="{% url 'creator:edit_text_field' field.id %}"/>
                   {% endif %}
                     <span class="glyphicon glyphicon-pencil"></span>&nbsp;
                   {% if field.get_model_type == 'TextField' %}
                     <a href="{% url 'creator:delete_text_field' form.id field.id %}"/>
                   {% elif field.get_model_type == 'NumericField' %}
                     <a href="{% url 'creator:delete_numeric_field' form.id field.id %}"/>
+                  {% elif field.get_model_type == 'DateField' %}
+                    <a href="{% url 'creator:delete_date_field' form.id field.id %}"/>
+                  {% elif field.get_model_type == 'MemoField' %}
+                    <a href="{% url 'creator:delete_memo_field' form.id field.id %}"/>
+                  {% elif field.get_model_type == 'MCQField' %}
+                    <a href="{% url 'creator:delete_mcq_field' form.id field.id %}"/>
                   {% endif %}
                     <span class="glyphicon glyphicon-trash"></span>&nbsp;
                 </a>
@@ -77,9 +95,9 @@
             <h5><strong>Questions in Bold are Necessary</strong></h5>
         {% else %}
           <div class="container-fluid">
-            <div class="col-sm-12" align="center">
+            <div class="col-sm-2">
               <br>
-              <div class="dropdown" align="center">
+              <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                   Add a Field
                   <span class="caret"></span>
