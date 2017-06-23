@@ -547,8 +547,8 @@ def edit_numeric_field(request, field_id):
 def get_all_fields(form):
     fields = []
 
-    text_fields = list(TextField.objects.filter(parent_form=form))
-    if text_fields.__len__() > 1:
+    text_fields = (TextField.objects.filter(parent_form=form))
+    if type(text_fields) is list:
         for field in text_fields:
             fields += field
     else:

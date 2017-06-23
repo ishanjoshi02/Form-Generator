@@ -77,6 +77,7 @@ class MemoFieldForm(forms.ModelForm):
 
 
 class MCQFieldForm(forms.ModelForm):
+    # choices = forms.CharField(max_length=250, widget=forms.TextInput(attrs={'placeholder':'Choice'}))
     class Meta:
         model = MCQField
         fields = [

@@ -46,7 +46,7 @@
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             </form>
-                            <a href="#" class="btn btn-default btn-sm" role="button">
+                            <a href="{% url 'input:display_form' mform.id 1 %}" class="btn btn-default btn-sm" role="button">
                                 <span class="glyphicon glyphicon-share {% if not mform.deployed %}active{% endif %}"></span>
                             </a>
                         </div>
