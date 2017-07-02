@@ -1,0 +1,27 @@
+{% extends "creator/base.html" %}
+{% block bodyBlock %}
+    {% for field in fields %}
+        {% if field.get_model_type == "TextField" %}
+            <a href="{% url 'creator:text_field_result' field.id %}">
+                {{ field }}
+            </a>
+        {% elif field.get_model_type == "NumericField" %}
+            <a href="{% url 'creator:numeric_field_result' field.id %}">
+                {{ field }}
+            </a>
+        {% elif field.get_model_type == "DateField" %}
+            <a href="{% url 'creator:date_field_result' field.id %}">
+                {{ field }}
+            </a>
+        {% elif field.get_model_type == "MemoField" %}
+            <a href="{% url 'creator:memo_field_result' field.id %}">
+                {{ field }}
+            </a>
+        {% elif field.get_model_type == "MCQField" %}
+            <a href="{% url 'creator:mcq_field_result' field.id %}">
+                {{ field }}
+            </a>
+        {% endif %}
+        <br>
+    {% endfor %}
+{% endblock bodyBlock %}

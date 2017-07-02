@@ -1,0 +1,25 @@
+{% extends 'creator/base.html' %}
+{% block titleBlock %}
+
+{% endblock %}
+{% block bodyBlock %}
+    <table>
+        <thead>
+            <td>
+                Question : {{ field }}
+            </td>
+        </thead>
+        <tbody>
+            {% for result in results %}
+                <tr>
+                    <td>
+                        {{ result.answer }}
+                    </td>
+                    <td>
+                        {{ result.user }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -26,10 +26,9 @@
             {% include "creator/form_template.html" %}
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              {% comment %} <button type="submit" class="btn btn-success">
+              <button type="submit" class="btn btn-success">
                 {{ button_text }}
-              </button> {% endcomment %}
-              <a href="{% url 'input:display_form' current_form.id sr_no %}">{{ button_text }}</a>
+              </button>
             </div>
           </div>
         </form>

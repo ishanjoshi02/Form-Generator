@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-import json
+# from input.models import TextFieldInput
 
 
 class Form(models.Model):
@@ -15,8 +15,8 @@ class Form(models.Model):
     def __str__(self):
         return self.form_name
 
-    def toJson(self):
-        return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+    def setDeployed(self):
+        self.deployed = True
 
 
 class TextField(models.Model):
@@ -25,6 +25,7 @@ class TextField(models.Model):
     question = models.CharField(max_length=1000)
     required = models.BooleanField(default=False)
     parent_form = models.ForeignKey(Form, on_delete=models.CASCADE, default=1)
+    result = []
 
     def __str__(self):
         return self.caption
@@ -32,6 +33,10 @@ class TextField(models.Model):
     @staticmethod
     def get_model_type():
         return 'TextField'
+
+    def results(self):
+        return self.result
+
 
 
 class NumericField(models.Model):

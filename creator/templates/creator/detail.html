@@ -2,11 +2,6 @@
 {% block titleBlock %}{{ form }}{% endblock titleBlock %}
 {% block scriptBlock %}
 <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
-<script>
-$(document).ready(function() {
-  console.log("Hi");
-});
-</script>
 {% endblock scriptBlock %}
 {% block navbarItems %}
 <li class="dropdown">
@@ -42,7 +37,7 @@ $(document).ready(function() {
 </li>
 {% endblock navbarItems %}
 {% block bodyBlock %}
-<div class="center-container">
+<div class="container-fluid">
   <div class="col-sm-12">
     <div class="panel panel-inverse" align="center">
       <div class="panel-body" align="center">
@@ -55,6 +50,11 @@ $(document).ready(function() {
           </small>
         </h2>
         <h4>Description : {{ form.body_text }}</h4>
+        {% if form.deployed %}
+          <a href="{% url 'creator:result' form.id %}">
+            View Results
+          </a>
+        {% endif %}
         {% if fields %}
           {% for field in fields %}
             <h3>

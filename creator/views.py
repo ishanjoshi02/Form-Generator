@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404
 
 from .forms import DateFieldForm, FormForm, UserForm, TextFieldForm, NumericFieldForm, MCQFieldForm, MemoFieldForm
 from .models import DateField, Form, TextField, NumericField, MemoField, MCQField
+from input.models import TextFieldInput, NumericFieldInput, DateFieldInput, MCQFieldInput, MemoFieldInput
 
 
 def create_date_field(request, form_id):
@@ -53,7 +54,6 @@ def create_text_field(request, form_id):
             field = form.save(commit=False)
             field.parent_form = Form.objects.get(pk=form_id)
             field.save()
-
 
             return render(request, 'creator/detail.html', context={
                 'form':
@@ -587,7 +587,6 @@ def get_all_fields(form):
     return fields
 
 
-
 def index(request):
     if not request.user.is_authenticated():
         form = UserForm(request.POST or None)
@@ -665,3 +664,79 @@ def register_user(request):
         "form": form
     }
     return render(request, 'creator/register.html', context=context)
+
+
+def result(request, form_id):
+    current_form = Form.objects.get(pk=form_id)
+    fields = get_all_fields(current_form)
+
+    context = {
+        'fields':
+            fields,
+    }
+    return render(request, 'creator/result.html', context=context)
+
+
+def textFieldResult(request, field_id):
+    current_field = TextField.objects.get(pk=field_id)
+    results = list(TextFieldInput.objects.filter(parent_field=current_field))
+
+    context = {
+        'field':
+            current_field,
+        'results':
+            results,
+    }
+    return render(request, 'creator/field_result.html', context=context)
+
+
+def numericFieldResult(request, field_id):
+    current_field = NumericField.objects.get(pk=field_id)
+    results = list(NumericFieldInput.objects.filter(parent_field=current_field))
+
+    context = {
+        'field':
+            current_field,
+        'results':
+            results,
+    }
+    return render(request, 'creator/field_result.html', context=context)
+
+
+def dateFieldResult(request, field_id):
+    current_field = DateField.objects.get(pk=field_id)
+    results = list(DateFieldInput.objects.filter(parent_field=current_field))
+
+    context = {
+        'field':
+            current_field,
+        'results':
+            results,
+    }
+    return render(request, 'creator/field_result.html', context=context)
+
+
+def memoFieldResult(request, field_id):
+    current_field = MemoField.objects.get(pk=field_id)
+    results = list(MemoFieldInput.objects.filter(parent_field=current_field))
+
+    context = {
+        'field':
+            current_field,
+        'results':
+            results,
+    }
+    return render(request, 'creator/field_result.html', context=context)
+
+
+def mcqFieldResult(request, field_id):
+    current_field = MCQField.objects.get(pk=field_id)
+    results = list(MCQFieldInput.objects.filter(parent_field=current_field))
+
+    context = {
+        'field':
+            current_field,
+        'results':
+            results,
+    }
+    return render(request, 'creator/field_result.html', context=context)

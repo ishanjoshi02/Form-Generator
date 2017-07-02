@@ -3,12 +3,15 @@ from . import views
 
 app_name = 'creator'
 
+# todo Clean Up Code
+
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^register$', views.register_user, name='register'),
     url(r'^login$', views.login_user, name='login_user'),
     url(r'^logout_user/$', views.logout_user, name='logout_user'),
     url(r'^create_form/$', views.create_form, name='create_form'),
+    url(r'^(?P<form_id>[0-9]+)/results/$', views.result, name='result'),
     url(r'^(?P<form_id>[0-9]+)/delete_form/$', views.delete_form, name='delete_form'),
     url(r'^(?P<form_id>[0-9]+)/(?P<field_id>[0-9]+)/delete_text_field/$', views.delete_text_field,
         name='delete_text_field'),
@@ -33,4 +36,9 @@ urlpatterns = [
     url(r'^(?P<field_id>[0-9]+)/edit_memo_field/$', views.edit_memo_field, name='edit_memo_field'),
     url(r'^(?P<field_id>[0-9]+)/edit_date_field/$', views.edit_date_field, name='edit_date_field'),
     url(r'^(?P<field_id>[0-9]+)/edit_mcq_field/$', views.edit_mcq_field, name='edit_mcq_field'),
+    url(r'^(?P<field_id>[0-9]+)/text_field_result/$', views.textFieldResult, name='text_field_result'),
+    url(r'^(?P<field_id>[0-9]+)/numeric_field_result/$', views.numericFieldResult, name='numeric_field_result'),
+    url(r'^(?P<field_id>[0-9]+)/date_field_result/$', views.dateFieldResult, name='date_field_result'),
+    url(r'^(?P<field_id>[0-9]+)/memo_field_result/$', views.memoFieldResult, name='memo_field_result'),
+    url(r'^(?P<field_id>[0-9]+)/mcq_field_result/$', views.mcqFieldResult, name='mcq_field_result'),
 ]

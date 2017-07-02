@@ -1,12 +1,11 @@
 {% extends "creator/base.html" %}
 {% block titleBlock %}Home{% endblock titleBlock %}
+{% block cssBlock %}
+{% endblock %}
+{% block scriptBlock %}
+{% endblock scriptBlock %}
 {% block searchBlock %}
-<form class="navbar-form navbar-left" role="search" method="get" action="{% url 'creator:index' %}">
-  <div class="form-group">
-    <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
-  </div>
-  <button type="submit" class="btn btn-default">Search</button>
-</form>
+    {% include 'creator/searchbox.html' %}
 {% endblock searchBlock %}
 {% block navbarItems %}
 <li class="nav-item">
@@ -64,5 +63,4 @@
             </div>
     </div>
     {% endif %}
-</div>
 {% endblock bodyBlock %}
