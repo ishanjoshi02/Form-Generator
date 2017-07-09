@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
 # from input.models import TextFieldInput
 
 
@@ -25,7 +26,6 @@ class TextField(models.Model):
     question = models.CharField(max_length=1000)
     required = models.BooleanField(default=False)
     parent_form = models.ForeignKey(Form, on_delete=models.CASCADE, default=1)
-    result = []
 
     def __str__(self):
         return self.caption
@@ -33,10 +33,6 @@ class TextField(models.Model):
     @staticmethod
     def get_model_type():
         return 'TextField'
-
-    def results(self):
-        return self.result
-
 
 
 class NumericField(models.Model):

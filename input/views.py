@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.shortcuts import render, get_object_or_404, redirect
 from creator.models import Form
 from creator.views import get_all_fields, login_user
@@ -29,6 +30,7 @@ def display_form(request, form_id, sr_no):
     button_text = 'Submit' if last else 'Next'
     if current_field_type == 'TextField':
         form = TextFieldInputForm(request.POST or None)
+        form.fields['answer'].required = current_field.required
 
         if form.is_valid():
             answer = form.save(commit=False)
@@ -39,7 +41,7 @@ def display_form(request, form_id, sr_no):
                 forms = Form.objects.filter(user=request.user)
                 return render(request, 'creator/index.html', {'forms': forms, })
             else:
-                return redirect('input:display_form', form_id=form_id, sr_no=sr_no+1)
+                return redirect('input:display_form', form_id=form_id, sr_no=sr_no + 1)
 
         sr_no += 1
         context = {
@@ -60,6 +62,11 @@ def display_form(request, form_id, sr_no):
         numeric_field_input = NumericFieldInput()
         numeric_field_input.parent_field = current_field
         form = NumericFieldInputForm(request.POST or None, instance=numeric_field_input)
+        form.fields['answer'].required = current_field.required
+        form.fields['answer'].validators = [
+            MaxValueValidator(current_field.range_high),
+            MinValueValidator(current_field.range_low)
+        ]
 
         if form.is_valid():
             answer = form.save(commit=False)
@@ -69,7 +76,7 @@ def display_form(request, form_id, sr_no):
                 forms = Form.objects.filter(user=request.user)
                 return render(request, 'creator/index.html', {'forms': forms, })
             else:
-                return redirect('input:display_form', form_id=form_id, sr_no=sr_no+1)
+                return redirect('input:display_form', form_id=form_id, sr_no=sr_no + 1)
 
         sr_no += 1
         context = {
@@ -87,19 +94,23 @@ def display_form(request, form_id, sr_no):
         return render(request, 'input/display_form.html', context)
 
     if current_field_type == 'DateField':
-        date_field_input = DateFieldInput()
-        date_field_input.parent_field = current_field
-        form = DateFieldInputForm(request.POST or None, instance=date_field_input)
+        form = DateFieldInputForm(request.POST or None, )
+        form.fields['answer'].required = current_field.required
+        form.fields['answer'].widget.years = range(
+            current_field.date_low.year,
+            current_field.date_high.year,
+        )
 
         if form.is_valid():
             answer = form.save(commit=False)
             answer.user = request.user
+            answer.parent_field = current_field
             answer.save()
             if last:
                 forms = Form.objects.filter(user=request.user)
                 return render(request, 'creator/index.html', {'forms': forms, })
             else:
-                return redirect('input:display_form', form_id=form_id, sr_no=sr_no+1)
+                return redirect('input:display_form', form_id=form_id, sr_no=sr_no + 1)
 
         sr_no += 1
         context = {
@@ -117,19 +128,19 @@ def display_form(request, form_id, sr_no):
         return render(request, 'input/display_form.html', context)
 
     if current_field_type == 'MemoField':
-        memo_field_input = MemoFieldInput()
-        memo_field_input.parent_field = current_field
-        form = MemoFieldInputForm(request.POST or None, instance=memo_field_input)
+        form = MemoFieldInputForm(request.POST or None)
+        form.fields['answer'].required = current_field.required
 
         if form.is_valid():
             answer = form.save(commit=False)
             answer.user = request.user
+            answer.parent_field = current_field
             answer.save()
             if last:
                 forms = Form.objects.filter(user=request.user)
                 return render(request, 'creator/index.html', {'forms': forms, })
             else:
-                return redirect('input:display_form', form_id=form_id, sr_no=sr_no+1)
+                return redirect('input:display_form', form_id=form_id, sr_no=sr_no + 1)
 
         sr_no += 1
         context = {
@@ -147,19 +158,30 @@ def display_form(request, form_id, sr_no):
         return render(request, 'input/display_form.html', context)
 
     if current_field_type == 'MCQField':
-        mcq_field_input = MCQFieldInput()
-        mcq_field_input.parent_field = current_field
-        form = MCQFieldInputForm(request.POST or None, instance=mcq_field_input)
+        form = MCQFieldInputForm(request.POST or None)
+        form.fields['answer'].required = current_field.required
+        choices = current_field.choices
+        choices = choices.split(",")
+
+        tuple_choices = []
+
+        for choice in choices:
+            choice = str(choice)
+
+            tuple_choices += (choice, choice),
+
+        form.fields['answer'].choices = tuple(tuple_choices)
 
         if form.is_valid():
             answer = form.save(commit=False)
             answer.user = request.user
+            answer.parent_field = current_field
             answer.save()
             if last:
                 forms = Form.objects.filter(user=request.user)
                 return render(request, 'creator/index.html', {'forms': forms, })
             else:
-                return redirect('input:display_form', form_id=form_id, sr_no=sr_no+1)
+                return redirect('input:display_form', form_id=form_id, sr_no=sr_no + 1)
 
         sr_no += 1
         context = {

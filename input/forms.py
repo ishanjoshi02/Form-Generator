@@ -6,6 +6,12 @@ from creator.models import TextField, NumericField, DateField, MemoField, MCQFie
 
 
 class TextFieldInputForm(forms.ModelForm):
+    answer = forms.CharField()
+
+    def __init__(self, *args, **kwargs):
+        super(TextFieldInputForm, self).__init__(*args, **kwargs)
+        self.fields['answer'].required = False
+
     class Meta:
         model = TextFieldInput
         fields = [
@@ -14,6 +20,8 @@ class TextFieldInputForm(forms.ModelForm):
 
 
 class NumericFieldInputForm(forms.ModelForm):
+    answer = forms.IntegerField()
+
     class Meta:
         model = NumericFieldInput
         fields = [
@@ -23,7 +31,7 @@ class NumericFieldInputForm(forms.ModelForm):
 
 class DateFieldInputForm(forms.ModelForm):
     answer = forms.DateField(widget=forms.SelectDateWidget(
-        years=range(1980, 2018)
+        years=range(0, 3000)
     ))
 
     class Meta:
@@ -35,6 +43,7 @@ class DateFieldInputForm(forms.ModelForm):
 
 class MemoFieldInputForm(forms.ModelForm):
     answer = forms.CharField(widget=forms.Textarea)
+
     class Meta:
         model = MemoFieldInput
         fields = [
@@ -44,8 +53,6 @@ class MemoFieldInputForm(forms.ModelForm):
 
 class MCQFieldInputForm(forms.ModelForm):
     answer = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple())
-
-    # todo add choices in init function
 
     class Meta:
         model = MCQFieldInput
