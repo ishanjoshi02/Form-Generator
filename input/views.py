@@ -197,3 +197,7 @@ def display_form(request, form_id, sr_no):
                 sr_no,
         }
         return render(request, 'input/display_form.html', context)
+    context = {
+
+    }
+    return render(request, 'creator/index.html')

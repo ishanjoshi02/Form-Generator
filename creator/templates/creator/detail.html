@@ -1,9 +1,18 @@
 {% extends "creator/base.html" %}
 {% block titleBlock %}{{ form }}{% endblock titleBlock %}
 {% block scriptBlock %}
-<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script>
+
+</script>
 {% endblock scriptBlock %}
 {% block navbarItems %}
+{% if form.deployed %}
+<li class="nav-item">
+  <a href="{% url 'creator:result' form.id %}">
+    View Results
+  </a>
+</li>
+{% endif %}
 <li class="dropdown">
   <a class="dropdown-toggle" data-toggle="dropdown" href="#">
     <span class="caret"></span>&nbsp;Add Field</a>
@@ -38,9 +47,9 @@
 {% endblock navbarItems %}
 {% block bodyBlock %}
 <div class="container-fluid">
-  <div class="col-sm-12">
-    <div class="panel panel-inverse" align="center">
-      <div class="panel-body" align="center">
+  <div class="col-sm-4">
+    <div class="panel panel-inverse">
+      <div class="panel-body">
         <h2>Name : {{ form }}
           <br>
           <small>
@@ -50,18 +59,14 @@
           </small>
         </h2>
         <h4>Description : {{ form.body_text }}</h4>
-        {% if form.deployed %}
-          <a href="{% url 'creator:result' form.id %}">
-            View Results
-          </a>
-        {% endif %}
+        <br>
         {% if fields %}
           {% for field in fields %}
-            <h3>
+            <h5>
               {% if field.required %}
-                <strong>{{ field.question }}</strong>
+                {{ field.question }}*
               {% else %}
-                <small>{{ field.question }}</small>
+                {{ field.question }}
               {% endif %}
               <small>
                   {% if field.get_model_type == 'TextField' %}
@@ -90,38 +95,34 @@
                     <span class="glyphicon glyphicon-trash"></span>&nbsp;
                 </a>
               </small>
-            </h3>
+            </h5>
         {% endfor %}
+        <br>
             <h5><strong>Questions in Bold are Necessary</strong></h5>
         {% else %}
-          <div class="container-fluid">
-            <div class="col-sm-2">
-              <br>
-              <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                  Add a Field
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="{% url 'creator:create_date_field' form.id %}">Add a Date Field</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'creator:create_memo_field' form.id %}">Add a Memo Field</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'creator:add_mcq_field' form.id %}">Add a MCQ Field</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'creator:create_numeric_field' form.id %}">Add Numeric Field</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'creator:create_text_field' form.id %}">Add Text Field</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            Add a Field
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="{% url 'creator:create_date_field' form.id %}">Add a Date Field</a>
+            </li>
+            <li>
+              <a href="{% url 'creator:create_memo_field' form.id %}">Add a Memo Field</a>
+            </li>
+            <li>
+              <a href="{% url 'creator:add_mcq_field' form.id %}">Add a MCQ Field</a>
+            </li>
+            <li>
+              <a href="{% url 'creator:create_numeric_field' form.id %}">Add Numeric Field</a>
+            </li>
+            <li>
+              <a href="{% url 'creator:create_text_field' form.id %}">Add Text Field</a>
+            </li>
+          </ul>
+        </div>
         {% endif %}
       </div>
     </div>

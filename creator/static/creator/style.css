@@ -1,13 +1,1 @@
-.navbar {
-    border-radius: 0;
-
-}
-.navbar .navbar-brand {
-  color: #FFFFFF;
-}
-.center-container {
-  margin: auto;
-  width: 0%;
-  border: 0px #FFFFFF;
-  padding: 10px;
-}
+.navbar {border-radius: 0;}

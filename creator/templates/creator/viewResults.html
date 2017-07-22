@@ -1,0 +1,7 @@
+{% if form.deployed %}
+<li class="nav-item">
+  <a href="{% url 'creator:result' form.id %}">
+    View Results
+  </a>
+</li>
+{% endif %}

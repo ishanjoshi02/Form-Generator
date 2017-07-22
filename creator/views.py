@@ -543,7 +543,6 @@ def edit_numeric_field(request, field_id):
 
         return render(request, 'creator/create_form.html', context=context)
 
-
 def get_all_fields(form):
     fields = []
 
@@ -581,9 +580,13 @@ def get_all_fields(form):
             fields += field
     else:
         fields += mcq_fields
-
-    # todo write code to sort the fields
-
+    try:
+        import operator
+    except ImportError:
+        compare = lambda x: x.sr_no
+    else:
+        compare = operator.attrgetter("sr_no")
+    fields.sort(key=compare, reverse=False)
     return fields
 
 
@@ -671,6 +674,8 @@ def result(request, form_id):
     fields = get_all_fields(current_form)
 
     context = {
+        'form':
+            current_form,
         'fields':
             fields,
     }
@@ -679,64 +684,99 @@ def result(request, form_id):
 
 def textFieldResult(request, field_id):
     current_field = TextField.objects.get(pk=field_id)
-    results = list(TextFieldInput.objects.filter(parent_field=current_field))
-
+    results = (TextFieldInput.objects.filter(parent_field=current_field))
+    query = request.GET.get("q")
+    if query:
+        results = results.filter(
+            Q(form_name__icontains=query) |
+            Q(header_text__icontains=query)
+        ).distinct
     context = {
         'field':
             current_field,
         'results':
             results,
+        'action':
+            "{% url 'creator:text_field_result' %}",
     }
     return render(request, 'creator/field_result.html', context=context)
 
 
 def numericFieldResult(request, field_id):
     current_field = NumericField.objects.get(pk=field_id)
-    results = list(NumericFieldInput.objects.filter(parent_field=current_field))
-
+    results = (NumericFieldInput.objects.filter(parent_field=current_field))
+    query = request.GET.get("q")
+    if query:
+        results = results.filter(
+            Q(form_name__icontains=query) |
+            Q(header_text__icontains=query)
+        ).distinct
     context = {
         'field':
             current_field,
         'results':
             results,
+        'action':
+            "{% url 'creator:numeric_field_result' %}",
     }
     return render(request, 'creator/field_result.html', context=context)
 
 
 def dateFieldResult(request, field_id):
     current_field = DateField.objects.get(pk=field_id)
-    results = list(DateFieldInput.objects.filter(parent_field=current_field))
-
+    results = (DateFieldInput.objects.filter(parent_field=current_field))
+    query = request.GET.get("q")
+    if query:
+        results = results.filter(
+            Q(form_name__icontains=query) |
+            Q(header_text__icontains=query)
+        ).distinct
     context = {
         'field':
             current_field,
         'results':
             results,
+        'action':
+            "{% url 'creator:date_field_result' %}",
     }
     return render(request, 'creator/field_result.html', context=context)
 
 
 def memoFieldResult(request, field_id):
     current_field = MemoField.objects.get(pk=field_id)
-    results = list(MemoFieldInput.objects.filter(parent_field=current_field))
-
+    results = MemoFieldInput.objects.filter(parent_field=current_field)
+    query = request.GET.get("q")
+    if query:
+        results = results.filter(
+            Q(form_name__icontains=query) |
+            Q(header_text__icontains=query)
+        ).distinct
     context = {
         'field':
             current_field,
         'results':
             results,
+        'action':
+            "{% url 'creator:memo_field_result' %}",
     }
     return render(request, 'creator/field_result.html', context=context)
 
 
 def mcqFieldResult(request, field_id):
     current_field = MCQField.objects.get(pk=field_id)
-    results = list(MCQFieldInput.objects.filter(parent_field=current_field))
-
+    results = (MCQFieldInput.objects.filter(parent_field=current_field))
+    query = request.GET.get("q")
+    if query:
+        results = results.filter(
+            Q(form_name__icontains=query) |
+            Q(header_text__icontains=query)
+        ).distinct
     context = {
         'field':
             current_field,
         'results':
             results,
+        'action':
+            "{% url 'creator:mcq_field_result' %}",
     }
     return render(request, 'creator/field_result.html', context=context)

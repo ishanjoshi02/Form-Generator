@@ -1,12 +1,18 @@
 {% extends 'creator/base.html' %}
 {% block titleBlock %}
-
+{{ field.caption }}
 {% endblock %}
 {% block bodyBlock %}
-    <table>
+<div class="container-fluid">
+    <h3>Question : {{ field.question }}</h3>
+    <h5>Caption : {{ field.caption }}</h5>
+    <table class="table table-striped table-hover">
         <thead>
             <td>
-                Question : {{ field }}
+                Answer
+            </td>
+            <td>
+                User
             </td>
         </thead>
         <tbody>
@@ -22,4 +28,5 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
 {% endblock %}
