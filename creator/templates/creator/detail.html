@@ -97,32 +97,22 @@
               </small>
             </h5>
         {% endfor %}
-        <br>
-            <h5><strong>Questions in Bold are Necessary</strong></h5>
+          <br>
+          <h5><strong>Questions in Bold are Necessary</strong></h5>
         {% else %}
-        <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-            Add a Field
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="{% url 'creator:create_date_field' form.id %}">Add a Date Field</a>
-            </li>
-            <li>
-              <a href="{% url 'creator:create_memo_field' form.id %}">Add a Memo Field</a>
-            </li>
-            <li>
-              <a href="{% url 'creator:add_mcq_field' form.id %}">Add a MCQ Field</a>
-            </li>
-            <li>
-              <a href="{% url 'creator:create_numeric_field' form.id %}">Add Numeric Field</a>
-            </li>
-            <li>
-              <a href="{% url 'creator:create_text_field' form.id %}">Add Text Field</a>
-            </li>
-          </ul>
-        </div>
+          <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Add a Field
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                  <li><a href="{% url 'creator:create_date_field' form.id %}">Add a Date Field</a></li>
+                  <li><a href="{% url 'creator:create_memo_field' form.id %}">Add a Memo Field</a></li>
+                  <li><a href="{% url 'creator:add_mcq_field' form.id %}">Add a MCQ Field</a></li>
+                  <li><a href="{% url 'creator:create_numeric_field' form.id %}">Add Numeric Field</a></li>
+                  <li><a href="{% url 'creator:create_text_field' form.id %}">Add Text Field</a></li>
+              </ul>
+          </div>
         {% endif %}
       </div>
     </div>

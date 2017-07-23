@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31acea27-caa4-42bd-a863-94a4ff9db603" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/creator/templates/creator/viewResults.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/creator/static/creator/modal.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/creator/static/creator/scripts/foo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input/templates/input/base.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/static/creator/style.css" afterPath="$PROJECT_DIR$/creator/static/creator/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/templates/creator/base.html" afterPath="$PROJECT_DIR$/creator/templates/creator/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/templates/creator/detail.html" afterPath="$PROJECT_DIR$/creator/templates/creator/detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/templates/creator/field_result.html" afterPath="$PROJECT_DIR$/creator/templates/creator/field_result.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/templates/creator/result.html" afterPath="$PROJECT_DIR$/creator/templates/creator/result.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/templates/creator/searchbox.html" afterPath="$PROJECT_DIR$/creator/templates/creator/searchbox.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/urls.py" afterPath="$PROJECT_DIR$/creator/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator/views.py" afterPath="$PROJECT_DIR$/creator/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/forms/settings.py" afterPath="$PROJECT_DIR$/forms/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/input/templates/input/display_form.html" afterPath="$PROJECT_DIR$/input/templates/input/display_form.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/input/urls.py" afterPath="$PROJECT_DIR$/input/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/input/views.py" afterPath="$PROJECT_DIR$/input/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,7 +21,78 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/input/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3719">
+              <caret line="194" column="66" lean-forward="false" selection-start-line="194" selection-start-column="66" selection-end-line="194" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/input/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/creator/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1848">
+              <caret line="540" column="0" lean-forward="false" selection-start-line="540" selection-start-column="0" selection-end-line="540" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/creator/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-660">
+              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="display_form.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/input/templates/input/display_form.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-160">
+              <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detail.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/creator/templates/creator/detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="652">
+              <caret line="116" column="10" lean-forward="false" selection-start-line="116" selection-start-column="10" selection-end-line="116" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/creator/templates/creator/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="16" column="44" lean-forward="false" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -61,28 +126,28 @@
         <option value="$PROJECT_DIR$/creator/tests.py" />
         <option value="$PROJECT_DIR$/forms/urls.py" />
         <option value="$PROJECT_DIR$/input/templates/input/base.html" />
-        <option value="$PROJECT_DIR$/input/urls.py" />
         <option value="$PROJECT_DIR$/input/admin.py" />
         <option value="$PROJECT_DIR$/creator/static/creator/scripts/modal.css" />
         <option value="$PROJECT_DIR$/creator/templates/creator/index.html" />
         <option value="$PROJECT_DIR$/input/models.py" />
-        <option value="$PROJECT_DIR$/input/templates/input/display_form.html" />
         <option value="$PROJECT_DIR$/creator/models.py" />
         <option value="$PROJECT_DIR$/input/forms.py" />
         <option value="$PROJECT_DIR$/creator/static/creator/scripts/foo.js" />
         <option value="$PROJECT_DIR$/creator/templates/creator/create_mcq_field.html" />
-        <option value="$PROJECT_DIR$/input/views.py" />
         <option value="$PROJECT_DIR$/creator/templates/creator/viewResults.html" />
-        <option value="$PROJECT_DIR$/creator/templates/creator/detail.html" />
         <option value="$PROJECT_DIR$/creator/decorators.py" />
-        <option value="$PROJECT_DIR$/creator/urls.py" />
         <option value="$PROJECT_DIR$/forms/settings.py" />
         <option value="$PROJECT_DIR$/creator/templates/creator/field_result.html" />
         <option value="$PROJECT_DIR$/creator/templates/creator/searchbox.html" />
-        <option value="$PROJECT_DIR$/creator/views.py" />
         <option value="$PROJECT_DIR$/creator/templates/creator/result.html" />
         <option value="$PROJECT_DIR$/creator/static/creator/style.css" />
         <option value="$PROJECT_DIR$/creator/templates/creator/base.html" />
+        <option value="$PROJECT_DIR$/creator/views.py" />
+        <option value="$PROJECT_DIR$/input/views.py" />
+        <option value="$PROJECT_DIR$/input/urls.py" />
+        <option value="$PROJECT_DIR$/creator/urls.py" />
+        <option value="$PROJECT_DIR$/input/templates/input/display_form.html" />
+        <option value="$PROJECT_DIR$/creator/templates/creator/detail.html" />
       </list>
     </option>
   </component>
@@ -129,7 +194,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -166,6 +231,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="input" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="input" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="forms" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -184,9 +271,31 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -297,8 +406,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1366" y="26" width="1366" height="742" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21136364" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21439394" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -437,13 +547,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/input/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="6" column="40" lean-forward="false" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/creator/templates/creator/form_template.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -458,31 +561,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/creator/templates/creator/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/input/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="3" column="36" lean-forward="false" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input/templates/input/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input/templates/input/display_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -514,13 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/input/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="170" column="46" lean-forward="false" selection-start-line="170" selection-start-column="46" selection-end-line="170" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/creator/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1840">
@@ -542,21 +617,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/creator/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="820">
-          <caret line="43" column="97" lean-forward="false" selection-start-line="43" selection-start-column="81" selection-end-line="43" selection-end-column="97" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/creator/templates/creator/searchbox.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="4" column="49" lean-forward="false" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -567,26 +631,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/creator/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13380">
-          <caret line="677" column="25" lean-forward="false" selection-start-line="677" selection-start-column="25" selection-end-line="677" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/creator/templates/creator/field_result.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="3" column="14" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/creator/templates/creator/detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="980">
-          <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -603,7 +651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="34" column="35" lean-forward="true" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -612,34 +659,76 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/creator/static/creator/modal.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="35" column="1" lean-forward="false" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/creator/static/creator/scripts/foo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="30" lean-forward="false" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/creator/decorators.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/creator/static/creator/modal.css" />
+    <entry file="file://$PROJECT_DIR$/creator/static/creator/scripts/foo.js" />
+    <entry file="file://$PROJECT_DIR$/creator/decorators.py" />
     <entry file="file://$PROJECT_DIR$/creator/static/creator/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/creator/templates/creator/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" column="44" lean-forward="false" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/creator/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1848">
+          <caret line="540" column="0" lean-forward="false" selection-start-line="540" selection-start-column="0" selection-end-line="540" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3719">
+          <caret line="194" column="66" lean-forward="false" selection-start-line="194" selection-start-column="66" selection-end-line="194" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/templates/input/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-182">
+          <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/creator/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-660">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/templates/input/display_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-160">
+          <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/creator/templates/creator/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="652">
+          <caret line="116" column="10" lean-forward="false" selection-start-line="116" selection-start-column="10" selection-end-line="116" selection-end-column="10" />
           <folding />
         </state>
       </provider>

@@ -10,10 +10,6 @@ from .forms import TextFieldInputForm, NumericFieldInputForm, DateFieldInputForm
 
 
 def display_form(request, form_id, sr_no):
-    if not request.user.is_authenticated():
-        return render(request, 'creator/login.html')
-
-    # todo clean up code
     current_form = get_object_or_404(Form, pk=form_id)
     if not current_form.deployed:
         current_form.deployed = True
@@ -197,7 +193,3 @@ def display_form(request, form_id, sr_no):
                 sr_no,
         }
         return render(request, 'input/display_form.html', context)
-    context = {
-
-    }
-    return render(request, 'creator/index.html')
