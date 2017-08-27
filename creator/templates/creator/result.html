@@ -6,28 +6,18 @@
   <div class="container-fluid">
       <div class="col-sm-4">
           <table class="table table-striped table-hover">
-              <thead>
-              <td>Sr.No.</td>
-              <td>Questions</td>
-              </thead>
-              <tbody>
-              {% for field in fields %}
-              <td>{{ forloop.counter }}</td>
-              <td>
-                  {% if field.get_model_type == "TextField" %}
-                  <a href="{% url 'creator:text_field_result' field.id %}">{{ field }}</a>
-                  {% elif field.get_model_type == "NumericField" %}
-                  <a href="{% url 'creator:numeric_field_result' field.id %}">{{ field }}</a>
-                  {% elif field.get_model_type == "DateField" %}
-                  <a href="{% url 'creator:date_field_result' field.id %}">{{ field }}</a>
-                  {% elif field.get_model_type == "MemoField" %}
-                  <a href="{% url 'creator:memo_field_result' field.id %}">{{ field }}</a>
-                  {% elif field.get_model_type == "MCQField" %}
-                  <a href="{% url 'creator:mcq_field_result' field.id %}">{{ field }}</a>
-                  {% endif %}
-              </td>
+            <tr>
+                {% for field in fields %}
+                    <th>{{ field }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in data %}
+              <tr>
+                  {% for val in row %}
+                    <td>{{ val|default:'' }}</td>
+                  {% endfor %}
+              </tr>
               {% endfor %}
-              </tbody>
           </table>
       </div>
   </div>

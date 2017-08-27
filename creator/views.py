@@ -166,7 +166,7 @@ def detail(request, form_id):
             user,
         'fields':
             get_all_fields(current_form),
-    }
+      }
     return render(request, 'creator/detail.html', context)
 
 
@@ -206,7 +206,7 @@ def delete_text_field(request, form_id, field_id):
             get_all_fields(current_form),
     }
 
-    return render(request, 'creator/detail.html', context)
+    return render(request, 'creator/detail.html', context=context)
 
 
 def delete_memo_field(request, form_id, field_id):
@@ -425,45 +425,33 @@ def edit_numeric_field(request, field_id):
 
 def get_all_fields(form):
     fields = []
-    text_fields = (TextField.objects.filter(parent_form=form))
-    if type(text_fields) is list:
-        for field in text_fields:
-            fields += field
-    else:
+    text_fields = list(TextField.objects.filter(parent_form=form))
+    if text_fields.__len__() >= 1:
         fields += text_fields
+    elif text_fields.__len__() == 1:
+        fields.append(text_fields)
     numeric_fields = list(NumericField.objects.filter(parent_form=form))
-    if not numeric_fields.__len__() <= 1:
-        for field in numeric_fields:
-            fields += field
-    else:
+    if numeric_fields.__len__() >= 1:
         fields += numeric_fields
+    elif numeric_fields.__len__() == 1:
+        fields.append(numeric_fields)
     date_fields = list(DateField.objects.filter(parent_form=form))
-    if not date_fields.__len__() <= 1:
-        for field in date_fields:
-            fields += field
-    else:
+    if date_fields.__len__() >= 1:
         fields += date_fields
+    elif date_fields.__len__() == 1:
+        fields.append(date_fields)
     memo_fields = list(MemoField.objects.filter(parent_form=form))
-    if not memo_fields.__len__() <= 1:
-        for field in memo_fields:
-            fields += field
-    else:
+    if memo_fields.__len__() >= 1:
         fields += memo_fields
+    elif memo_fields.__len__() == 1:
+        fields.append(memo_fields)
     mcq_fields = list(MCQField.objects.filter(parent_form=form))
-    if not mcq_fields.__len__() <= 1:
-        for field in mcq_fields:
-            fields += field
-    else:
+    if mcq_fields.__len__() >= 1:
         fields += mcq_fields
-    try:
-        import operator
-    except ImportError:
-        compare = lambda x: x.sr_no
-    else:
-        compare = operator.attrgetter("sr_no")
-    fields.sort(key=compare, reverse=False)
-    return fields
+    elif mcq_fields.__len__() == 1:
+        fields.append(mcq_fields)
 
+    return fields
 
 def index(request):
     all_forms = Form.objects.filter(user=request.user)
@@ -538,11 +526,29 @@ def register_user(request):
 
 def result(request, form_id):
     current_form = Form.objects.get(pk=form_id)
+    all_fields = get_all_fields(current_form)
+    data = {}
+    for field in all_fields:
+        if type(field) == TextField:
+            data[field.caption] = list(TextFieldInput.objects.filter(parent_field=field))
+        elif type(field) == NumericField:
+            data[field.caption] = list(NumericFieldInput.objects.filter(parent_field=field))
+        elif type(field) == DateField:
+            data[field.caption] = list(DateFieldInput.objects.filter(parent_field=field))
+        elif type(field) == MemoField:
+            data[field.caption] = list(MemoFieldInput.objects.filter(parent_field=field))
+        else:
+            data[field.caption] = list(MCQFieldInput.objects.filter(parent_field=field))
+    columns = [data[field.caption] for field in all_fields]
+    max_len = len(max(columns, key=len))
+    for col in columns:
+        col += [None,] * (max_len - len(col))
+    rows = [[col[i] for col in columns] for i in range(max_len)]
     context = {
-        'form':
-            current_form,
         'fields':
-            get_all_fields(current_form),
+            all_fields,
+        'data':
+            rows
     }
     return render(request, 'creator/result.html', context=context)
 
