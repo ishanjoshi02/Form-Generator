@@ -18,6 +18,6 @@ After installing Django, simply go to `forms` folder and run command:
 
 `python manage.py runserver`
 
-This command will setup the localhost (By default to 8000). Now, you can access the website at 
+This command will setup the localhost (By default to 8000). Now, you can access the website at [ localhost ](http://localhost:8000/)
 
 `http://localhost:8000/`
