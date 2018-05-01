@@ -5,6 +5,13 @@ This is a Website that allows you to create a eForm and send it to the website's
 The answer are stored and only the owner can view these changes.
 
 
+## Installing dependencies
+
+To install the dependencies for this project:
+
+`pip install requirements.txt`
+
+
 ## Django Web Framework
 
 ![Django](https://s3-us-west-2.amazonaws.com/swapwp/static/sites/4/2016/02/26204742/3475465970_4a84f6c4dd_o.png)
@@ -21,3 +28,4 @@ After installing Django, simply go to `forms` folder and run command:
 This command will setup the localhost (By default to 8000). Now, you can access the website at [ localhost ](http://localhost:8000/)
 
 `http://localhost:8000/`
+
